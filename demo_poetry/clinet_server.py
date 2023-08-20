@@ -1,6 +1,6 @@
-import requests
+import httpx
 
-def interact_with_calculator():
+async def interact_with_calculator():
     print("Welcome to the calculator program. Enter 'Q' to quit at any time.")
 
     while True:
@@ -20,10 +20,12 @@ def interact_with_calculator():
             print("Invalid input. Please enter a valid number.")
             continue
 
-        url = "http://localhost:5000/calculate"  # URL of the calculator service
+        url = "http://localhost:8000/calculate/"+operator  # URL of the calculator service
 
-        data = {'num': num, 'operator': operator}
-        response = requests.post(url, json=data)
+        data = {'num': num}
+        
+        async with httpx.AsyncClient() as client:
+            response = await client.post(url, json=data)
 
         if response.status_code == 200:
             result = response.json()['result']
@@ -32,4 +34,5 @@ def interact_with_calculator():
             print("An error occurred while communicating with the calculator service.")
     
 if __name__ == "__main__":
-    interact_with_calculator()
+    import asyncio
+    asyncio.run(interact_with_calculator())
