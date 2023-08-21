@@ -23,7 +23,7 @@ async def interact_with_calculator():
         url = f"http://localhost:8000/calculate/{operator}?num={num}"  # URL of the calculator service
 
         data = {'num': num}
-        headers = {"User-Agent": "MyCustomUserAgent"}  #desired user agent
+        headers = {"User-Agent": "MyCustomUserAgent2"}  #desired user agent
 
         async with httpx.AsyncClient() as client:
             if operator == "put_in":
