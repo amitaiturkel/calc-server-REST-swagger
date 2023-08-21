@@ -1,6 +1,7 @@
 from typing import Annotated, Dict
 
 from fastapi import FastAPI, Header, HTTPException
+from fastapi.openapi.utils import get_openapi
 
 
 class Calc:
@@ -33,6 +34,24 @@ class Calc:
 
 
 app = FastAPI()
+
+
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="Custom title",
+        version="2.5.0",
+        summary="This is a very custom OpenAPI schema",
+        description="Here's a longer description of the custom **OpenAPI** schema",
+        routes=app.routes,
+    )
+    openapi_schema["info"]["x-logo"] = {"url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"}
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi
 users: Dict[str, str] = {}
 
 
@@ -61,48 +80,48 @@ def get_answer(calc, operator, num1):
 
 
 @app.get("/calculate/add")
-async def add(num, user_agent: Annotated[str | None, Header()] = None):
-    calc = get_user_calc(user_agent)
+async def add(num, user_id: Annotated[str | None, Header()] = None):
+    calc = get_user_calc(user_id)
     operator = "add"
     result = get_answer(calc, operator, num)
     return {"result": result}
 
 
 @app.get("/calculate/subtract")
-async def subtract(num, user_agent: Annotated[str | None, Header()] = None):
-    calc = get_user_calc(user_agent)
+async def subtract(num, user_id: Annotated[str | None, Header()] = None):
+    calc = get_user_calc(user_id)
     operator = "subtract"
     result = get_answer(calc, operator, num)
     return {"result": result}
 
 
 @app.get("/calculate/multiply")
-async def multiply(num, user_agent: Annotated[str | None, Header()] = None):
-    calc = get_user_calc(user_agent)
+async def multiply(num, user_id: Annotated[str | None, Header()] = None):
+    calc = get_user_calc(user_id)
     operator = "multiply"
     result = get_answer(calc, operator, num)
     return {"result": result}
 
 
 @app.get("/calculate/divide")
-async def divide(num, user_agent: Annotated[str | None, Header()] = None):
-    calc = get_user_calc(user_agent)
+async def divide(num, user_id: Annotated[str | None, Header()] = None):
+    calc = get_user_calc(user_id)
     operator = "divide"
     result = get_answer(calc, operator, num)
     return {"result": result}
 
 
 @app.patch("/calculate/put_in")
-async def put_in(num, user_agent: Annotated[str | None, Header()] = None):
-    calc = get_user_calc(user_agent)
+async def put_in(num, user_id: Annotated[str | None, Header()] = None):
+    calc = get_user_calc(user_id)
     operator = "put_in"
     result = get_answer(calc, operator, num)
     return {"result": result}
 
 
 @app.delete("/calculate/clear")
-async def clear(num, user_agent: Annotated[str | None, Header()] = None):
-    calc = get_user_calc(user_agent)
+async def clear(num, user_id: Annotated[str | None, Header()] = None):
+    calc = get_user_calc(user_id)
     operator = "clear"
     result = get_answer(calc, operator, num)
     return {"result": result}
