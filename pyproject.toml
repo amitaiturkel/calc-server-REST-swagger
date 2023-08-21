@@ -8,6 +8,7 @@ packages = [{include = "demo_poetry"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+pre-commit = "^3.3.3"
 
 
 [build-system]

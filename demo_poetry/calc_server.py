@@ -1,5 +1,7 @@
-from typing import Annotated
-from fastapi import FastAPI, Header, HTTPException,Request
+from typing import Annotated, Dict
+
+from fastapi import FastAPI, Header, HTTPException
+
 
 class Calc:
     def __init__(self):
@@ -29,14 +31,17 @@ class Calc:
     def get_result(self):
         return self.result
 
+
 app = FastAPI()
-users = dict()
+users: Dict[str, str] = {}
+
+
 def get_user_calc(user_id):
     if user_id not in users.keys():
         users[user_id] = Calc()
     return users[user_id]
 
-    
+
 def get_answer(calc, operator, num1):
     if operator == "add":
         calc.add(num1)
@@ -53,58 +58,67 @@ def get_answer(calc, operator, num1):
     else:
         raise HTTPException(status_code=400, detail="Invalid operator")
     return calc.get_result()
-calc = Calc()
-@app.get('/calculate/add')
-async def calculate(num,user_agent: Annotated[str | None, Header()] = None):
-    calc = get_user_calc(user_agent)
-    operator = 'add'
-    result = get_answer(calc, operator, num)
-    return {'result': result}
 
-@app.get('/calculate/subtract')
-async def calculate(num,user_agent: Annotated[str | None, Header()] = None):
-    calc = get_user_calc(user_agent)
-    operator = 'subtract'
-    result = get_answer(calc, operator, num)
-    return {'result': result}
 
-@app.get('/calculate/multiply')
-async def calculate(num,user_agent: Annotated[str | None, Header()] = None):
+@app.get("/calculate/add")
+async def add(num, user_agent: Annotated[str | None, Header()] = None):
     calc = get_user_calc(user_agent)
-    operator = 'multiply'
+    operator = "add"
     result = get_answer(calc, operator, num)
-    return {'result': result}
+    return {"result": result}
 
-@app.get('/calculate/divide')
-async def calculate(num,user_agent: Annotated[str | None, Header()] = None):
-    calc = get_user_calc(user_agent)
-    operator = 'divide'
-    result = get_answer(calc, operator, num)
-    return {'result': result}
 
-@app.patch('/calculate/put_in')
-async def calculate(num,user_agent: Annotated[str | None, Header()] = None):
+@app.get("/calculate/subtract")
+async def subtract(num, user_agent: Annotated[str | None, Header()] = None):
     calc = get_user_calc(user_agent)
-    operator = 'put_in'
+    operator = "subtract"
     result = get_answer(calc, operator, num)
-    return {'result': result}
+    return {"result": result}
 
-@app.delete('/calculate/clear')
-async def calculate(num,user_agent: Annotated[str | None, Header()] = None):
+
+@app.get("/calculate/multiply")
+async def multiply(num, user_agent: Annotated[str | None, Header()] = None):
     calc = get_user_calc(user_agent)
-    operator = 'clear'
+    operator = "multiply"
     result = get_answer(calc, operator, num)
-    return {'result': result}
+    return {"result": result}
+
+
+@app.get("/calculate/divide")
+async def divide(num, user_agent: Annotated[str | None, Header()] = None):
+    calc = get_user_calc(user_agent)
+    operator = "divide"
+    result = get_answer(calc, operator, num)
+    return {"result": result}
+
+
+@app.patch("/calculate/put_in")
+async def put_in(num, user_agent: Annotated[str | None, Header()] = None):
+    calc = get_user_calc(user_agent)
+    operator = "put_in"
+    result = get_answer(calc, operator, num)
+    return {"result": result}
+
+
+@app.delete("/calculate/clear")
+async def clear(num, user_agent: Annotated[str | None, Header()] = None):
+    calc = get_user_calc(user_agent)
+    operator = "clear"
+    result = get_answer(calc, operator, num)
+    return {"result": result}
 
 
 @app.get("/items/{item_id}")
 async def read_item(item_id):
     return {"item_id": item_id}
 
-@app.get("/")
+
+@app.get("/users")
 async def read_item1():
-    return len(users)
+    return users
+
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
