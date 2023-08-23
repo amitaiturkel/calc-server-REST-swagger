@@ -10,7 +10,7 @@ To get started with the project, follow these steps:
 
 Clone this repository to your local machine by running the following command in your terminal:
 
-"""git clone https://github.com/amitaiturkel/calc-server-test """
+'git clone https://github.com/amitaiturkel/calc-server-test'
 go to calc-server-test foldor 
 
 ### Set Up the Virtual Environment
