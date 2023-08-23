@@ -17,7 +17,8 @@ go to calc-server-test foldor
 
 Activate a virtual environment to isolate the project's dependencies. If you're using `virtualenv`, you can create and activate the environment with the following commands:
 
-`python -m venv .venv`
+`python3 -m venv .venv`
+or run `python -m venv .venv`
 `source .venv/bin/activate`
 
 
