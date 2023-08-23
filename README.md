@@ -44,9 +44,9 @@ This will execute the test cases located in the `tests` folder to ensure the cod
 ### Running the Calculator Server
 
 To run the calculator server, execute the following command:
-
+ 
 `python demo_poetry/calc_server.py` or `python3 demo_poetry/calc_server.py`
-
+ 
 The server will start, and you'll be able to interact with it using the provided client scripts.
 
 ### Using the Interactive Clients
