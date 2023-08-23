@@ -52,6 +52,7 @@ def custom_openapi():
 
 
 app.openapi = custom_openapi
+
 users: Dict[str, str] = {}
 
 
@@ -61,7 +62,7 @@ def get_user_calc(user_id):
     return users[user_id]
 
 
-def get_answer(calc, operator, num1):
+def get_answer(calc, operator, num1=1):
     if operator == "add":
         calc.add(num1)
     elif operator == "subtract":
@@ -120,16 +121,16 @@ async def put_in(num, user_id: Annotated[str | None, Header()] = None):
 
 
 @app.delete("/calculate/clear")
-async def clear(num, user_id: Annotated[str | None, Header()] = None):
+async def clear(num=0, user_id: Annotated[str | None, Header()] = None):
     calc = get_user_calc(user_id)
     operator = "clear"
-    result = get_answer(calc, operator, num)
+    result = get_answer(calc, operator)
     return {"result": result}
 
 
 @app.get("/users")
 async def read_item1():
-    return users
+    return {"result": users}
 
 
 if __name__ == "__main__":
