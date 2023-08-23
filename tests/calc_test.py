@@ -8,7 +8,6 @@ def test_client_1_add():
     num = 3
     operator = "add"
     url = f"http://localhost:8000/calculate/{operator}?num={num}"
-    assert url == "http://localhost:8000/calculate/add?num=3"
     headers = {"user-id": "client1"}
     response = client.get(url, headers=headers)
     assert response.status_code == 200
