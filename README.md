@@ -17,7 +17,7 @@ go to calc-server-test foldor
 
 Activate a virtual environment to isolate the project's dependencies. If you're using `virtualenv`, you can create and activate the environment with the following commands:
 
-`python3 -m venv .venv`
+`python3 -m venv .venv` 
 or run `python -m venv .venv`
 and then
 `source .venv/bin/activate`
@@ -44,7 +44,7 @@ This will execute the test cases located in the `tests` folder to ensure the cod
 ### Running the Calculator Server
 
 To run the calculator server, execute the following command:
-
+`python demo_poetry/calc_server.py` or `python3 demo_poetry/calc_server.py`
 
 The server will start, and you'll be able to interact with it using the provided client scripts.
 
@@ -54,11 +54,11 @@ Two interactive client scripts are provided as examples to interact with the ser
 
 1. To use the first interactive client, navigate to the `demo_poetry` folder and run the following command:
 
-`python client_server.py`
+`python client_server.py` or  `python3 client_server.py`
 
 2. To use the second interactive client, navigate to the `demo_poetry` folder and run the following command:
 
-`python client_server2.py`
+`python client_server2.py` or `python3 client_server2.py`
 
 
 Both clients will allow you to perform various operations on the calculator server.
