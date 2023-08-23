@@ -10,22 +10,24 @@ To get started with the project, follow these steps:
 
 Clone this repository to your local machine by running the following command in your terminal:
 
-"""git clone https://github.com/amitaiturkel/calc-server-test """
+`git clone https://github.com/amitaiturkel/calc-server-test`
 go to calc-server-test foldor 
 
 ### Set Up the Virtual Environment
 
 Activate a virtual environment to isolate the project's dependencies. If you're using `virtualenv`, you can create and activate the environment with the following commands:
 
-"""python -m venv .venv
-source .venv/bin/activate"""
+`python3 -m venv .venv`
+or run `python -m venv .venv`
+and then
+`source .venv/bin/activate`
 
 
 ### Install Dependencies
 
 Use `poetry` to install the project's dependencies:
 
-"""poetry install"""
+`poetry install`
 
 
 This will ensure that all required packages are installed.
@@ -34,7 +36,7 @@ This will ensure that all required packages are installed.
 
 Run the test suite using the `tox` command:
 
-"""tox"""
+`tox`
 
 
 This will execute the test cases located in the `tests` folder to ensure the code's correctness.
@@ -52,11 +54,11 @@ Two interactive client scripts are provided as examples to interact with the ser
 
 1. To use the first interactive client, navigate to the `demo_poetry` folder and run the following command:
 
-"""python client_server.py"""
+`python client_server.py`
 
 2. To use the second interactive client, navigate to the `demo_poetry` folder and run the following command:
 
-"""python client_server2.py"""
+`python client_server2.py`
 
 
 Both clients will allow you to perform various operations on the calculator server.
@@ -65,7 +67,7 @@ Both clients will allow you to perform various operations on the calculator serv
 
 The calculator server supports Swagger documentation, which allows you to explore its API endpoints interactively. You can access the Swagger UI by opening the following URL in your web browser after you made sure the server is running:
 
-http://localhost:8000/docs
+`http://localhost:8000/docs`
 
 
 ## Contributing
