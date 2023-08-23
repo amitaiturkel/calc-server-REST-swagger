@@ -19,6 +19,7 @@ Activate a virtual environment to isolate the project's dependencies. If you're 
 
 `python3 -m venv .venv`
 or run `python -m venv .venv`
+and then
 `source .venv/bin/activate`
 
 
