@@ -5,13 +5,13 @@ async def interact_with_calculator():
     print("Welcome to the calculator program. Enter 'Q' to quit at any time.")
 
     while True:
-        operator = input("Enter an operator ('add', 'subtract', 'multiply', 'divide', 'clear', 'put_in') or 'Q' to quit: ")
+        operator = input("Enter an operator ('add', 'subtract', 'multiply', 'divide', 'clear', 'apply_value') or 'Q' to quit: ")
 
         if operator.lower() == "q":
             print("Exiting the program.")
             break
 
-        if operator not in ["add", "subtract", "multiply", "divide", "clear", "put_in"]:
+        if operator not in ["add", "subtract", "multiply", "divide", "clear", "apply_value"]:
             print("Invalid operator. Please enter a valid operator or 'Q' to quit.")
             continue
 
