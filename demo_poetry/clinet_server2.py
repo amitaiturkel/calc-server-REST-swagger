@@ -5,13 +5,13 @@ async def interact_with_calculator():
     print("Welcome to the calculator program. Enter 'Q' to quit at any time.")
 
     while True:
-        operator = input("Enter an operator ('add', 'subtract', 'multiply', 'divide', 'clear', 'put_in') or 'Q' to quit: ")
+        operator = input("Enter an operator ('add', 'subtract', 'multiply', 'divide', 'clear', 'apply_value') or 'Q' to quit: ")
 
         if operator.lower() == "q":
             print("Exiting the program.")
             break
 
-        if operator not in ["add", "subtract", "multiply", "divide", "clear", "put_in"]:
+        if operator not in ["add", "subtract", "multiply", "divide", "clear", "apply_value"]:
             print("Invalid operator. Please enter a valid operator or 'Q' to quit.")
             continue
 
@@ -23,12 +23,11 @@ async def interact_with_calculator():
 
         url = f"http://localhost:8000/calculate/{operator}?num={num}"  # URL of the calculator service
 
-        data = {"num": num}
-        headers = {"user_idt": "Myuser_id2"}  # desired user agent
+        headers = {"user-id": "My-user-id2"}  # desired user agent
 
         async with httpx.AsyncClient() as client:
             if operator == "put_in":
-                response = await client.patch(url, json=data)
+                response = await client.patch(url, headers=headers)
             elif operator == "clear":
                 response = await client.delete(url)
             else:
