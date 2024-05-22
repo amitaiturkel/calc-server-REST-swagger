@@ -80,7 +80,7 @@ def get_answer(calc, operator, num1=1):
     return calc.get_result()
 
 
-@app.get("/calculate/add")
+@app.put("/calculate/add")
 async def add(num, user_id: Annotated[str | None, Header()] = None):
     calc = get_user_calc(user_id)
     operator = "add"
@@ -88,7 +88,7 @@ async def add(num, user_id: Annotated[str | None, Header()] = None):
     return {"result": result}
 
 
-@app.get("/calculate/subtract")
+@app.put("/calculate/subtract")
 async def subtract(num, user_id: Annotated[str | None, Header()] = None):
     calc = get_user_calc(user_id)
     operator = "subtract"
@@ -96,7 +96,7 @@ async def subtract(num, user_id: Annotated[str | None, Header()] = None):
     return {"result": result}
 
 
-@app.get("/calculate/multiply")
+@app.put("/calculate/multiply")
 async def multiply(num, user_id: Annotated[str | None, Header()] = None):
     calc = get_user_calc(user_id)
     operator = "multiply"
@@ -104,7 +104,7 @@ async def multiply(num, user_id: Annotated[str | None, Header()] = None):
     return {"result": result}
 
 
-@app.get("/calculate/divide")
+@app.put("/calculate/divide")
 async def divide(num, user_id: Annotated[str | None, Header()] = None):
     calc = get_user_calc(user_id)
     operator = "divide"
