@@ -112,8 +112,8 @@ async def divide(num, user_id: Annotated[str | None, Header()] = None):
     return {"result": result}
 
 
-@app.patch("/calculate/put_in")
-async def put_in(num, user_id: Annotated[str | None, Header()] = None):
+@app.patch("/calculate/apply_value")
+async def apply_value(num, user_id: Annotated[str | None, Header()] = None):
     calc = get_user_calc(user_id)
     operator = "put_in"
     result = get_answer(calc, operator, num)
